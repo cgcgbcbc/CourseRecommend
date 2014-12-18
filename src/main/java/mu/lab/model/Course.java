@@ -2,6 +2,7 @@ package mu.lab.model;
 
 import org.springframework.data.neo4j.annotation.GraphId;
 import org.springframework.data.neo4j.annotation.NodeEntity;
+import org.springframework.data.neo4j.annotation.RelatedTo;
 
 import java.util.Set;
 
@@ -18,5 +19,6 @@ public class Course {
 
     public String courseName;
 
-    Set<Student> studentSet;
+    @RelatedTo(type = "LEARN_BY")
+    public Set<Student> studentSet;
 }

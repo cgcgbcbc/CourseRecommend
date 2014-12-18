@@ -20,6 +20,7 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
-    <neo4j:config storeDirectory="data/graph.db" />
+    <neo4j:config storeDirectory="data/graph.db" base-package="mu.lab.model"/>
+    <neo4j:repositories base-package="mu.lab.repo" />
 
 </beans>

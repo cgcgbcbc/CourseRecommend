@@ -2,6 +2,7 @@ package mu.lab.model;
 
 import org.springframework.data.neo4j.annotation.GraphId;
 import org.springframework.data.neo4j.annotation.NodeEntity;
+import org.springframework.data.neo4j.annotation.RelatedToVia;
 
 import java.util.Set;
 
@@ -14,6 +15,7 @@ public class Student {
     @GraphId Long id;
     public String studentId;
 
-    public Set<Course> courseSet;
+    @RelatedToVia(type = "SCORE")
+    public Set<Score> scoreSet;
 
 }

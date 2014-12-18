@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 /**
  * Created by guangchen on 12/18/14 16:44.
  */
-@RelationshipEntity(type = "SCORES")
+@RelationshipEntity(type = "SCORE")
 public class Score {
     @GraphId Long id;
     @StartNode Student student;
