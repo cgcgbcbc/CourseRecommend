@@ -37,6 +37,7 @@ public class ImportCourse {
             if (reader != null) {
                 try {
                     reader.close();
+                    System.out.println("Importing finished, without errors.");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
