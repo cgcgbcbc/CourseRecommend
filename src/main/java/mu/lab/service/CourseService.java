@@ -23,4 +23,8 @@ public class CourseService {
     public Course createCourse(String courseId, String courseName, Float stdev) {
         return courseRepository.save(new Course(courseId, courseName, stdev));
     }
+
+    public Course getCourseByCourseId(String courseId) {
+        return courseRepository.findBySchemaPropertyValue("courseId", courseId);
+    }
 }

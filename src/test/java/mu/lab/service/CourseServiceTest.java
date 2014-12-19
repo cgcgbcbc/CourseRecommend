@@ -44,9 +44,13 @@ public class CourseServiceTest {
 
     @Test
     public void testCreateCourse() throws Exception {
-        Course course = courseService.createCourse("00690632", "大学语文", new Float(1.69967));
+        String courseId = "00690632";
+        Course course = courseService.createCourse(courseId, "大学语文", new Float(1.69967));
         assertNotNull(course);
         assertNotNull(course.getId());
         assertEquals(1, courseService.getNumberOfCourses());
+        Course _course = courseService.getCourseByCourseId(courseId);
+        assertNotNull(_course);
+        assertEquals(course.courseName, _course.courseName);
     }
 }
