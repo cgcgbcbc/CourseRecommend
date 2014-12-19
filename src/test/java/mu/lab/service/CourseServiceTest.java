@@ -17,7 +17,7 @@ import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration("file:src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml")
+@ContextConfiguration("file:src/main/webapp/WEB-INF/test-context.xml")
 public class CourseServiceTest {
 
     @Autowired

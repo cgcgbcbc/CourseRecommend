@@ -17,7 +17,7 @@ import java.io.InputStreamReader;
 
 import static org.junit.Assert.assertEquals;
 
-@ContextConfiguration("file:src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml")
+@ContextConfiguration("file:src/main/webapp/WEB-INF/test-context.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
 public class ImportCourseTest {
 
