@@ -31,4 +31,8 @@ public class Course {
         this.courseName = courseName;
         this.standardDeviation = standardDeviation;
     }
+
+    public void addStudent(Student student) {
+        this.studentSet.add(student);
+    }
 }

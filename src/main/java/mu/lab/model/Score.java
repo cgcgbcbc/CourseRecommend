@@ -21,4 +21,5 @@ public class Score {
         this.course = course;
         this.score = score;
     }
+    public Score() {};
 }

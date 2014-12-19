@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -49,8 +50,13 @@ public class CourseServiceTest {
         assertNotNull(course);
         assertNotNull(course.getId());
         assertEquals(1, courseService.getNumberOfCourses());
-        Course _course = courseService.getCourseByCourseId(courseId);
-        assertNotNull(_course);
-        assertEquals(course.courseName, _course.courseName);
+        course = courseService.getCourseByCourseId(courseId);
+        assertNotNull(course);
+        assertEquals(course.courseName, course.courseName);
+
+        String studentId = "abcde";
+        courseService.addRelationshipBetweenStudentAndCourse(courseId, studentId, 99);
+        course = courseService.getCourseByCourseId(courseId);
+        assertNotEquals(course.studentSet.size(), 0);
     }
 }
