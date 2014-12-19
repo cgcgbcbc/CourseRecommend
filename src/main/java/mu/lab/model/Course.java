@@ -19,6 +19,8 @@ public class Course {
 
     public String courseName;
 
+    public Float standardDeviation;
+
     @RelatedTo(type = "LEARN_BY")
     public Set<Student> studentSet;
 }

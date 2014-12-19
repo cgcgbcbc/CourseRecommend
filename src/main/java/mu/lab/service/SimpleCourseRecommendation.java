@@ -1,14 +1,14 @@
-package mu.lab.mu.lab.service;
+package mu.lab.service;
 
 import mu.lab.model.Course;
 import mu.lab.model.Student;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by guangchen on 12/18/14 22:04.
+ * Created by guangchen on 12/18/14 22:18.
  */
 @Service
-public class CourseRecommendation implements ICourseRecommendation {
+public class SimpleCourseRecommendation implements ICourseRecommendation {
     @Override
     public Student getRandomStudent(int seed) {
         return null;

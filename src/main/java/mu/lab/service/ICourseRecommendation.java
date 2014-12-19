@@ -1,4 +1,4 @@
-package mu.lab.mu.lab.service;
+package mu.lab.service;
 
 import mu.lab.model.Course;
 import mu.lab.model.Student;
