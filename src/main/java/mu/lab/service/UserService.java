@@ -1,6 +1,8 @@
 package mu.lab.service;
 
 import mu.lab.model.Student;
+import mu.lab.repo.StudentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -8,8 +10,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserService implements IUserService {
+    @Autowired
+    StudentRepository studentRepository;
     @Override
     public Student getRandomStudent(int seed) {
-        return null;
+        long count = studentRepository.count();
+        if (count == 0) return null;
+        return studentRepository.findAll().single();
     }
 }
