@@ -13,6 +13,7 @@ import java.util.Set;
 public class Course {
 
     @GraphId Long id;
+    public Long getId() {return this.id;};
     public String courseId;
 
     public String courseName;
@@ -21,4 +22,12 @@ public class Course {
 
     @RelatedTo(type = "LEARN_BY")
     public Set<Student> studentSet;
+
+    public Course() {};
+
+    public Course(String courseId, String courseName, Float standardDeviation) {
+        this.courseId = courseId;
+        this.courseName = courseName;
+        this.standardDeviation = standardDeviation;
+    }
 }
