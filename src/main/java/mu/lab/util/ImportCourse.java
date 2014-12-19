@@ -2,6 +2,8 @@ package mu.lab.util;
 
 import mu.lab.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.NotNull;
@@ -20,11 +22,12 @@ public class ImportCourse {
     private CourseService courseService;
 
     public static void main(String[] args) {
-        System.out.println("Reading files..." + args[1]);
-        ImportCourse instance = new ImportCourse();
+        ApplicationContext context = new ClassPathXmlApplicationContext("file:src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml");
+        ImportCourse instance = context.getBean(ImportCourse.class);
+        System.out.println("Reading files..." + args[0]);
         BufferedReader reader = null;
         try {
-            reader = new BufferedReader(new FileReader(args[1]));
+            reader = new BufferedReader(new FileReader(args[0]));
             instance.importCourse(reader);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -46,7 +49,12 @@ public class ImportCourse {
 
         while ((line = bufferedReader.readLine()) != null) {
             String[] course = line.split(",");
-            courseService.createCourse(course[0], course[1], Float.valueOf(course[2]));
+            try {
+                courseService.createCourse(course[0], course[1], Float.valueOf(course[2]));
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println(line);
+                throw e;
+            }
         }
 
     }
