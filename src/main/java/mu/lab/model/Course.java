@@ -15,8 +15,6 @@ public class Course {
     @GraphId Long id;
     public String courseId;
 
-    public Integer courseWeight;
-
     public String courseName;
 
     public Float standardDeviation;

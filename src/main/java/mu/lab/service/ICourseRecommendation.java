@@ -7,6 +7,7 @@ import mu.lab.model.Student;
  * Created by guangchen on 12/18/14 22:01.
  */
 public interface ICourseRecommendation {
+    @Deprecated
     public Student getRandomStudent(int seed);
     public Iterable<Course> getRecommendCourse(Student student);
     public Iterable<Course> getRecommendCourse(Student student, Course course);

@@ -1,6 +1,7 @@
 package mu.lab.controller;
 
 import mu.lab.service.ICourseRecommendation;
+import mu.lab.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,9 @@ public class HelloController {
 	@Qualifier("simpleCourseRecommendation")
 	@Autowired
 	ICourseRecommendation simpleRecommendationService;
+
+	@Autowired
+	IUserService userService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String printWelcome(ModelMap model) {
