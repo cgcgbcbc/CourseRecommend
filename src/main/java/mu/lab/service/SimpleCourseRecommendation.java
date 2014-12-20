@@ -2,6 +2,7 @@ package mu.lab.service;
 
 import mu.lab.model.Course;
 import mu.lab.model.Student;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -9,9 +10,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SimpleCourseRecommendation implements ICourseRecommendation {
+    @Autowired IUserService userService;
     @Override
     public Student getRandomStudent(int seed) {
-        return null;
+        return userService.getRandomStudent(seed);
     }
 
     @Override
