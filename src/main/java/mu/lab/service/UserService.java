@@ -3,6 +3,7 @@ package mu.lab.service;
 import mu.lab.model.Student;
 import mu.lab.repo.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,10 +15,15 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService implements IUserService {
     @Autowired
     StudentRepository studentRepository;
+    @SuppressWarnings("SpringJavaAutowiringInspection")
+    @Autowired
+    private Neo4jTemplate template;
     @Override
     public Student getRandomStudent(int seed) {
         long count = studentRepository.count();
         if (count == 0) return null;
-        return studentRepository.findAll().single();
+        Student student = studentRepository.findAll().single();
+        template.fetch(student.scoreSet);
+        return student;
     }
 }

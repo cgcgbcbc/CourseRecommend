@@ -14,8 +14,23 @@ import javax.validation.constraints.NotNull;
 public class Score {
     @GraphId Long id;
     @StartNode Student student;
+
+    public Student getStudent() {
+        return student;
+    }
+
     @EndNode Course course;
+
+    public Course getCourse() {
+        return course;
+    }
+
     Integer score;
+
+    public Integer getScore() {
+        return score;
+    }
+
     public Score(@NotNull Student student,@NotNull Course course,@NotNull Integer score) {
         this.student = student;
         this.course = course;
