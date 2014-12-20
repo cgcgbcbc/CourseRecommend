@@ -4,11 +4,13 @@ import mu.lab.model.Student;
 import mu.lab.repo.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by guangchen on 12/19/14 19:57.
  */
 @Service
+@Transactional
 public class UserService implements IUserService {
     @Autowired
     StudentRepository studentRepository;
