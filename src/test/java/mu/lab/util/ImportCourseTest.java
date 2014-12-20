@@ -11,6 +11,7 @@ import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.springframework.data.neo4j.support.node.Neo4jHelper;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -18,6 +19,7 @@ import java.io.InputStreamReader;
 import static org.junit.Assert.assertEquals;
 
 @ContextConfiguration("file:src/main/webapp/WEB-INF/test-context.xml")
+@WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
 public class ImportCourseTest {
 
