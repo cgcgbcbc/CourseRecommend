@@ -5,6 +5,7 @@ import mu.lab.model.Student;
 import mu.lab.repo.CourseRepository;
 import mu.lab.repo.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +20,10 @@ public class CourseService {
     private CourseRepository courseRepository;
     @Autowired
     private StudentRepository studentRepository;
+
+    @SuppressWarnings("SpringJavaAutowiringInspection")
+    @Autowired
+    private Neo4jTemplate template;
 
     public long getNumberOfCourses() {
         return courseRepository.count();
@@ -43,5 +48,9 @@ public class CourseService {
         studentRepository.save(student);
         course.addStudent(student);
         courseRepository.save(course);
+    }
+
+    public void getStudentForCourse(Course course) {
+        template.fetch(course.studentSet);
     }
 }
