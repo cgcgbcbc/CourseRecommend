@@ -49,7 +49,9 @@ public class CourseRecommendation implements ICourseRecommendation {
             courseService.addRelationshipBetweenStudentAndCourse(student.getId(), score.getCourse().courseId, score.getScore());
         }
         studentRepository.addSimilarityRelation(student.getId());
-        return getRecommendCourse(student.getId());
+        Iterable<Course> courses = getRecommendCourse(student.getId());
+        studentRepository.delete(student);
+        return courses;
     }
 
 
