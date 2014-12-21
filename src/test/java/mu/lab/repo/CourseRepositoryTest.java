@@ -30,4 +30,12 @@ public class CourseRepositoryTest {
         assertNotNull(courses);
         assertTrue(courses.iterator().hasNext());
     }
+
+    @Test
+    public void testGetRecommend() throws Exception {
+        Student student = userService.getRandomStudent(0);
+        Iterable<Course> courses = courseRepository.recommendCourseBasedOnSimilarity(student.getId(), 5);
+        assertNotNull(courses);
+        assertTrue(courses.iterator().hasNext());
+    }
 }

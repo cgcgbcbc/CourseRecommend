@@ -24,4 +24,17 @@ public interface CourseRepository extends GraphRepository<Course> {
             "return newc\n" +
             "limit {2};")
     Iterable<Course> simpleRecommendCourse(Long id, Integer courseStudentsBound, Integer limit);
+
+        @Query("start a = node({0})\n" +
+                "match (a)-[s:Similarity]-(b:Student)\n" +
+                "with a, s.similarity as sim, b\n" +
+                "order by sim desc\n" +
+                "limit {1}\n" +
+                "match a, (b)-[s:SCORE]->(c:Course)\n" +
+                "where not( (a)-[:SCORE]->(c) )\n" +
+                "with s.score as score, c\n" +
+                "order by score desc\n" +
+                "limit {1}\n" +
+                "return c;")
+        Iterable<Course> recommendCourseBasedOnSimilarity(Long studentId, Integer limit);
 }
