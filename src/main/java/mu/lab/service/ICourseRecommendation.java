@@ -9,6 +9,7 @@ import mu.lab.model.Student;
 public interface ICourseRecommendation {
     @Deprecated
     public Student getRandomStudent(int seed);
-    public Iterable<Course> getRecommendCourse(Student student);
-    public Iterable<Course> getRecommendCourse(Student student, Course course);
+    public Iterable<Course> getRecommendCourse(Long studentId);
+    public Iterable<Course> getRecommendCourse(Long studentId, int n);
+    public Iterable<Course> getRecommendCourse(Long studentId, Long courseId);
 }

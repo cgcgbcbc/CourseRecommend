@@ -15,12 +15,19 @@ public class CourseRecommendation implements ICourseRecommendation {
     }
 
     @Override
-    public Iterable<Course> getRecommendCourse(Student student) {
+    public Iterable<Course> getRecommendCourse(Long studentId) {
         return null;
     }
 
     @Override
-    public Iterable<Course> getRecommendCourse(Student student, Course course) {
+    public Iterable<Course> getRecommendCourse(Long studentId, int n) {
         return null;
     }
+
+    @Override
+    public Iterable<Course> getRecommendCourse(Long studentId, Long courseId) {
+        return null;
+    }
+
+
 }

@@ -14,6 +14,11 @@ import java.util.Set;
 @NodeEntity
 public class Student {
     @GraphId Long id;
+
+    public Long getId() {
+        return id;
+    }
+
     @Indexed public String studentId;
 
     @RelatedToVia(type = "SCORE")
@@ -25,7 +30,7 @@ public class Student {
         return s;
     }
 
-    public Student() {};
+    public Student() {}
 
     public Student(String studentId) {
         this.studentId = studentId;

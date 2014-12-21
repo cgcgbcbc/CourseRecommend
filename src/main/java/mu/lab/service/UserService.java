@@ -22,7 +22,7 @@ public class UserService implements IUserService {
     public Student getRandomStudent(int seed) {
         long count = studentRepository.count();
         if (count == 0) return null;
-        Student student = studentRepository.findAll().single();
+        Student student = studentRepository.findAll().slice(0,1).getContent().get(0);
         template.fetch(student.scoreSet);
         return student;
     }
