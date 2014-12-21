@@ -1,6 +1,7 @@
 package mu.lab.service;
 
 import mu.lab.model.Course;
+import mu.lab.model.Score;
 import mu.lab.model.Student;
 import mu.lab.repo.CourseRepository;
 import mu.lab.repo.StudentRepository;
@@ -48,6 +49,18 @@ public class CourseService {
         studentRepository.save(student);
         course.addStudent(student);
         courseRepository.save(course);
+    }
+
+    public Score addRelationshipBetweenStudentAndCourse(Long studentId, String courseId, Integer score) {
+        Course course = this.getCourseByCourseId(courseId);
+        assert course != null;
+        Student student = studentRepository.findOne(studentId);
+        assert student != null;
+        Score s = student.takeExamsIn(course, score);
+        course.addStudent(student);
+        studentRepository.save(student);
+        courseRepository.save(course);
+        return s;
     }
 
     public void getStudentForCourse(Course course) {

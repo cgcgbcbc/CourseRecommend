@@ -26,4 +26,9 @@ public class UserService implements IUserService {
         template.fetch(student.scoreSet);
         return student;
     }
+
+    @Override
+    public Student createFakeStudent() {
+        return studentRepository.save(new Student(""));
+    }
 }

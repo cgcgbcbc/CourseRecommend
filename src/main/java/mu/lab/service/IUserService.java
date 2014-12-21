@@ -7,4 +7,5 @@ import mu.lab.model.Student;
  */
 public interface IUserService {
     public Student getRandomStudent(int seed);
+    public Student createFakeStudent();
 }
