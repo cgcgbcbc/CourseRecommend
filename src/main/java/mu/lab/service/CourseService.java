@@ -17,6 +17,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class CourseService {
+
+    public static final int page_size = 20;
+
     @Autowired
     private CourseRepository courseRepository;
     @Autowired
@@ -65,5 +68,17 @@ public class CourseService {
 
     public void getStudentForCourse(Course course) {
         template.fetch(course.studentSet);
+    }
+
+    public Iterable<Course> getCourses(int skip, int limit) {
+        return courseRepository.getCourseList(skip, limit);
+    }
+
+    public Iterable<Course> getCourses() {
+        return this.getCourses(0, page_size);
+    }
+
+    public Iterable<Course> getCourses(int page) {
+        return this.getCourses(page * page_size, page_size);
     }
 }

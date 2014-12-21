@@ -37,4 +37,7 @@ public interface CourseRepository extends GraphRepository<Course> {
                 "limit {1}\n" +
                 "return c;")
         Iterable<Course> recommendCourseBasedOnSimilarity(Long studentId, Integer limit);
+
+        @Query("match (c:Course) skip {0} limit {1};")
+        Iterable<Course> getCourseList(int skip, int limit);
 }
