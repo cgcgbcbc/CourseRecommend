@@ -7,6 +7,8 @@ import mu.lab.repo.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by guangchen on 12/18/14 22:18.
  */
@@ -56,7 +58,7 @@ public class SimpleCourseRecommendation implements ICourseRecommendation {
     }
 
     @Override
-    public Iterable<Course> getRecommendCourseBasedOnMockScores(Score... scores) {
+    public Iterable<Course> getRecommendCourseBasedOnMockScores(List<Score> scores) {
         Student student = userService.createFakeStudent();
         for (Score score : scores) {
             courseService.addRelationshipBetweenStudentAndCourse(student.getId(), score.getCourse().courseId, score.getScore());

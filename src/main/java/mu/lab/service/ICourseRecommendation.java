@@ -3,6 +3,8 @@ package mu.lab.service;
 import mu.lab.model.Course;
 import mu.lab.model.Score;
 
+import java.util.List;
+
 /**
  * Created by guangchen on 12/18/14 22:01.
  */
@@ -35,5 +37,5 @@ public interface ICourseRecommendation {
      * @param scores Score list
      * @return recommend courses based on the given scores.
      */
-    public Iterable<Course> getRecommendCourseBasedOnMockScores(Score... scores);
+    public Iterable<Course> getRecommendCourseBasedOnMockScores(List<Score> scores);
 }
