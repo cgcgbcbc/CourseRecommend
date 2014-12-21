@@ -16,4 +16,10 @@ public interface StudentRepository extends GraphRepository<Student> {
             "with a, b, sum(result) as sim\n" +
             "merge (a)-[s:Similarity]-(b) set s.similarity=sim;")
     void addSimilarityRelation();
+
+    @Query("start a = node({0}) match (a)-[x:SCORE]->(c:Course)<-[y:SCORE]-(b:Student)\n" +
+            "with a, b, case when abs(x.score-y.score) > 0 then 1-abs(x.score-y.score)/(2*c.standardDeviation) else 0.0 end as result\n" +
+            "with a, b, sum(result) as sim\n" +
+            "merge (a)-[s:Similarity]-(b) set s.similarity=sim;")
+    void addSimilarityRelation(Long studentId);
 }
