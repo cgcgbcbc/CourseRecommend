@@ -18,6 +18,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class CourseService {
 
+    /**
+     * default page size of course list
+     */
     public static final int page_size = 20;
 
     @Autowired
@@ -29,6 +32,10 @@ public class CourseService {
     @Autowired
     private Neo4jTemplate template;
 
+    /**
+     * get total numbers of courses.
+     * @return number of courses.
+     */
     public long getNumberOfCourses() {
         return courseRepository.count();
     }
@@ -70,14 +77,29 @@ public class CourseService {
         template.fetch(course.studentSet);
     }
 
+    /**
+     * Get course list
+     * @param skip skip
+     * @param limit limit
+     * @return courses
+     */
     public Iterable<Course> getCourses(int skip, int limit) {
         return courseRepository.getCourseList(skip, limit);
     }
 
+    /**
+     * Get course list, skip=0, limit={@link #page_size}
+     * @return course list
+     */
     public Iterable<Course> getCourses() {
         return this.getCourses(0, page_size);
     }
 
+    /**
+     * Get course list of given page, use default {@link @page_size}
+     * @param page page
+     * @return course list
+     */
     public Iterable<Course> getCourses(int page) {
         return this.getCourses(page * page_size, page_size);
     }

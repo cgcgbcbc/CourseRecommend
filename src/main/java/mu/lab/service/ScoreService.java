@@ -13,6 +13,13 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class ScoreService {
     @Autowired CourseService courseService;
+
+    /**
+     * create a fake score
+     * @param courseId courseId of the course
+     * @param score score
+     * @return a fake score which used in {@link ICourseRecommendation#getRecommendCourseBasedOnMockScores}
+     */
     public Score createFakeScore(String courseId, Integer score) {
         Course course = courseService.getCourseByCourseId(courseId);
         return new Score(course, score);
