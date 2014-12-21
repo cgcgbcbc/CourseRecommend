@@ -3,7 +3,6 @@ package mu.lab.repo;
 import mu.lab.model.Course;
 import mu.lab.model.Student;
 import mu.lab.service.IUserService;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -23,7 +22,7 @@ public class CourseRepositoryTest {
     @Autowired
     IUserService userService;
 
-    @Test
+    //@Test
     public void testGetTopCourses() throws Exception {
         Student student = userService.getRandomStudent(0);
         Iterable<Course> courses = courseRepository.simpleRecommendCourse(student.getId(), 10, 3);
@@ -31,7 +30,7 @@ public class CourseRepositoryTest {
         assertTrue(courses.iterator().hasNext());
     }
 
-    @Test
+    //@Test
     public void testGetRecommend() throws Exception {
         Student student = userService.getRandomStudent(0);
         Iterable<Course> courses = courseRepository.recommendCourseBasedOnSimilarity(student.getId(), 5);
