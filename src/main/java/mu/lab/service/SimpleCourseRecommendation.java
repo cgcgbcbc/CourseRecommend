@@ -1,7 +1,6 @@
 package mu.lab.service;
 
 import mu.lab.model.Course;
-import mu.lab.model.Student;
 import mu.lab.repo.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,14 +18,8 @@ public class SimpleCourseRecommendation implements ICourseRecommendation {
 
     public static final int DEFAULT_COURSE_STUDENT_BOUND = 10;
 
-    @Autowired IUserService userService;
-
     @Autowired
     CourseRepository courseRepository;
-    @Override
-    public Student getRandomStudent(int seed) {
-        return userService.getRandomStudent(seed);
-    }
 
     /**
      *

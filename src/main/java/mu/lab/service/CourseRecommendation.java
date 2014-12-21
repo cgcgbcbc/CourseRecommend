@@ -1,7 +1,6 @@
 package mu.lab.service;
 
 import mu.lab.model.Course;
-import mu.lab.model.Student;
 import mu.lab.repo.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,11 +12,6 @@ import org.springframework.stereotype.Service;
 public class CourseRecommendation implements ICourseRecommendation {
     @Autowired
     CourseRepository courseRepository;
-
-    @Override
-    public Student getRandomStudent(int seed) {
-        return null;
-    }
 
     @Override
     public Iterable<Course> getRecommendCourse(Long studentId) {
