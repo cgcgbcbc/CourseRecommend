@@ -1,5 +1,6 @@
 package mu.lab.service;
 
+import mu.lab.model.Course;
 import mu.lab.model.Score;
 import mu.lab.model.Student;
 import org.junit.After;
@@ -13,6 +14,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import java.util.Set;
+
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 
@@ -54,5 +58,8 @@ public class UserServiceTest {
         assertNotNull(student.scoreSet);
         Score s = student.scoreSet.iterator().next();
         assertNotNull(s.getScore());
+        Set<Course> course = student.getCourses();
+        assertEquals(1, course.size());
+        assertEquals(courseId, course.iterator().next().courseId);
     }
 }

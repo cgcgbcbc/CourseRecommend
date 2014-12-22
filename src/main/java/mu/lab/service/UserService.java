@@ -1,5 +1,6 @@
 package mu.lab.service;
 
+import mu.lab.model.Score;
 import mu.lab.model.Student;
 import mu.lab.repo.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class UserService implements IUserService {
         if (count == 0) return null;
         Student student = studentRepository.findAll().slice(0,1).getContent().get(0);
         template.fetch(student.scoreSet);
+        for (Score score : student.scoreSet) {
+            template.fetch(score.getCourse());
+        }
         return student;
     }
 
