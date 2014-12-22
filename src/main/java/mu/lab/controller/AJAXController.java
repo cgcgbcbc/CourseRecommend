@@ -10,6 +10,7 @@ import mu.lab.repo.CourseRepository;
 import mu.lab.repo.StudentRepository;
 import mu.lab.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,10 +34,10 @@ public class AJAXController {
     CourseService courseService;
     @Autowired
     IUserService userService;
-    @Autowired
-    SimpleCourseRecommendation simpleCourseRecommendation;
-    @Autowired
-    CourseRecommendation courseRecommendation;
+    @Autowired@Qualifier("simpleCourseRecommendation")
+    ICourseRecommendation simpleCourseRecommendation;
+    @Autowired@Qualifier("courseRecommendation")
+    ICourseRecommendation courseRecommendation;
     @Autowired
     ScoreService scoreService;
 
