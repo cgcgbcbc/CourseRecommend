@@ -69,7 +69,8 @@ public class SimpleCourseRecommendation implements ICourseRecommendation {
         for (Score score : scores) {
             courseService.addRelationshipBetweenStudentAndCourse(student.getId(), score.getCourse().courseId, score.getScore());
         }
+        Iterable<Course> courses =  getRecommendCourse(student.getId());
         studentRepository.delete(student);
-        return getRecommendCourse(student.getId());
+        return courses;
     }
 }
