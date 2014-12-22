@@ -4,6 +4,7 @@ import mu.lab.model.Course;
 import mu.lab.model.Score;
 import mu.lab.model.Student;
 import mu.lab.repo.CourseRepository;
+import mu.lab.repo.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +27,9 @@ public class SimpleCourseRecommendation implements ICourseRecommendation {
 
     @Autowired
     CourseRepository courseRepository;
+
+    @Autowired
+    StudentRepository studentRepository;
 
     @Autowired
     IUserService userService;
@@ -65,6 +69,7 @@ public class SimpleCourseRecommendation implements ICourseRecommendation {
         for (Score score : scores) {
             courseService.addRelationshipBetweenStudentAndCourse(student.getId(), score.getCourse().courseId, score.getScore());
         }
+        studentRepository.delete(student);
         return getRecommendCourse(student.getId());
     }
 }
