@@ -63,9 +63,7 @@
     <p>&nbsp;</p>
     <p>&nbsp;</p>
     <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
+
     <ul class="list-group">
       <li class="list-group-item" style="text-align: center"><span >经过课程在图中寻找同学</span></li>
       <li class="list-group-item" style="text-align: center"><span id="step1"></span></li>
