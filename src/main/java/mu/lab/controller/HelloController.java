@@ -1,8 +1,9 @@
 package mu.lab.controller;
 
-import mu.lab.repo.CourseRepository;
-import mu.lab.repo.StudentRepository;
+import mu.lab.service.ICourseRecommendation;
+import mu.lab.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,11 +13,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/")
 public class HelloController {
 
+	@Qualifier("courseRecommendation")
 	@Autowired
-	CourseRepository courseRepository;
+	ICourseRecommendation recommendationService;
+
+	@Qualifier("simpleCourseRecommendation")
+	@Autowired
+	ICourseRecommendation simpleRecommendationService;
 
 	@Autowired
-	StudentRepository studentRepository;
+	IUserService userService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String printWelcome(ModelMap model) {

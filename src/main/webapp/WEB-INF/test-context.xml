@@ -11,21 +11,21 @@
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <context:annotation-config/>
-    <context:spring-configured/>
-    <context:component-scan base-package="mu.lab">
-        <context:include-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
-    </context:component-scan>
-    <mvc:annotation-driven/>
+       <context:annotation-config/>
+       <context:spring-configured/>
+       <context:component-scan base-package="mu.lab">
+              <context:include-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
+       </context:component-scan>
+       <mvc:annotation-driven/>
 
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/pages/"/>
-        <property name="suffix" value=".jsp"/>
-    </bean>
+       <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+              <property name="prefix" value="/WEB-INF/pages/"/>
+              <property name="suffix" value=".jsp"/>
+       </bean>
 
-    <neo4j:config storeDirectory="data/graph.db" base-package="mu.lab.model"/>
-    <neo4j:repositories base-package="mu.lab.repo" />
+       <neo4j:config storeDirectory="data/test.db" base-package="mu.lab.model"/>
+       <neo4j:repositories base-package="mu.lab.repo" />
 
-    <tx:annotation-driven />
+       <tx:annotation-driven />
 
 </beans>
