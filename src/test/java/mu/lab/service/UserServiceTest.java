@@ -14,6 +14,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import java.util.Map;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
@@ -61,5 +62,14 @@ public class UserServiceTest {
         Set<Course> course = student.getCourses();
         assertEquals(1, course.size());
         assertEquals(courseId, course.iterator().next().courseId);
+    }
+
+    @Test
+    public void testGetDistanceDistribution() throws Exception {
+        String studentId2 = "test";
+        courseService.addRelationshipBetweenStudentAndCourse(courseId, studentId2, 100);
+        Student student = userService.getRandomStudent(0);
+        Map<Integer, Integer> map = userService.getDistanceDistribution(student.getId());
+        assertEquals((Integer)1, map.get(1));
     }
 }
