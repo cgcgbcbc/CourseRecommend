@@ -61,8 +61,8 @@ public class AJAXController {
             for(Score s: student.scoreSet){
                 result+=s.getCourse().courseName+";"+s.getScore()+";"+s.getCourse().courseId +"\n";
             }
-            System.out.println(student.getId());
-            System.out.println(result);
+            //System.out.println(student.getId());
+            //System.out.println(result);
             return result;
         }
         return "";
@@ -87,7 +87,7 @@ public class AJAXController {
         for(Course course:courses2){
             result+=course.courseName+";";
         }
-        System.out.println(result);
+        //System.out.println(result);
         return result;
     }
 }
