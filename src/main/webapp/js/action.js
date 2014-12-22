@@ -294,6 +294,11 @@ function loadStep(){
             for(var i=1; i <=5; i++){
                 document.getElementById("step"+i).innerHTML="第"+i+"步找到"+strs[i-1]+"人"
             }
+            var num=237;
+            for(var i=0; i < 5; i++){
+                num-=parseInt(strs[i]);
+            }
+            document.getElementById("step"+6).innerHTML="还有"+num+"人没找到";
         }
     });
 }
