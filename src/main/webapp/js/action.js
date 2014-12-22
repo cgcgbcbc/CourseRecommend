@@ -87,6 +87,7 @@ function next(){
 };
 function load() {
     username=document.getElementById("username").innerHTML;
+
     $.ajax({
         type: "GET",
         url: "/ajax?action=mycourse&page=0&username="+username,
@@ -100,6 +101,7 @@ function load() {
                 courseIdMap[s[0]]=s[2];
             }
             reload();
+            loadStep();
         }
     });
 
@@ -178,6 +180,7 @@ function addAcourse(o){
     courseAndScoure[o.parentNode.parentNode.childNodes[0].childNodes[0].data]=60;
     courseIdMap[o.parentNode.parentNode.childNodes[0].childNodes[0].data]=coursIdBuffer[o.parentNode.parentNode.childNodes[0].childNodes[0].data];
     o.disabled=true;
+    loadStep();
 }
 function editScoure(o){
     if(editing)
@@ -193,6 +196,7 @@ function deleteline(o){
     delete (courseAndScoure[obj.childNodes[0].childNodes[0].data]);
     delete (courseIdMap[obj.childNodes[0].childNodes[0].data]);
     obj.parentNode.removeChild(obj);
+    loadStep();
 
 }
 function editCourse(){
@@ -271,6 +275,25 @@ function recCourse(){
                 "<td style='text-align: center;'>"+str2[i]+"</td></tr>");
             }
 
+        }
+    });
+}
+function loadStep(){
+    var courses="";
+    for(var k in courseIdMap){
+        courses+=courseIdMap[k]+";"+courseAndScoure[k]+":";
+    }
+
+    $.ajax({
+        type: "POST",
+        url: "/distance?courses="+courses,
+        contentType: "text/plain; charset=utf-8",
+        data: "",
+        success: function (msg) {
+            var strs=msg.split(":");
+            for(var i=1; i <=5; i++){
+                document.getElementById("step"+i).innerHTML="第"+i+"步找到"+strs[i-1]+"人"
+            }
         }
     });
 }

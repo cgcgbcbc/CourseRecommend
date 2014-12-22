@@ -51,17 +51,35 @@
   </div><!-- /.container-fluid -->
 </nav>
 <div class="row">
-  <div class="col-lg-1">
+  <div class="col-lg-2">
     <ul class="nav nav-pills nav-stacked" role="tablist">
 
-      <li id="mycourse" role="presentation" class="active"><a href="#" onclick="cancelEdit()">我的课程</a></li>
-      <li id="editcourse" role="presentation"><a href="#" onclick="editCourse()">编辑课程</a></li>
-      <li id="addcourse" role="presentation"><a href="#" onclick="addCourse()">添加课程</a></li>
-      <li id="reccourse" role="presentation"><a href="#" onclick="recCourse()">推荐课程</a></li>
+      <li id="mycourse" role="presentation" class="active"><a style="text-align: center;" href="#" onclick="cancelEdit()">我的课程</a></li>
+      <li id="editcourse" role="presentation"><a href="#" style="text-align: center;" onclick="editCourse()">编辑课程</a></li>
+      <li id="addcourse" role="presentation"><a href="#" style="text-align: center;" onclick="addCourse()">添加课程</a></li>
+      <li id="reccourse" role="presentation"><a href="#" style="text-align: center;" onclick="recCourse()">推荐课程</a></li>
+    </ul>
+<p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <ul class="list-group">
+      <li class="list-group-item" style="text-align: center"><span >经过课程在图中寻找同学</span></li>
+      <li class="list-group-item" style="text-align: center"><span id="step1"></span></li>
+      <li class="list-group-item" style="text-align: center"><span id="step2"></span></li>
+      <li class="list-group-item" style="text-align: center"><span id="step3"></span></li>
+      <li class="list-group-item" style="text-align: center"><span id="step4"></span></li>
+      <li class="list-group-item" style="text-align: center"><span id="step5"></span></li>
     </ul>
   </div><!-- /.col-lg-1 -->
+
   <div class="row">
-    <div class="col-lg-6 col-lg-offset-2">
+    <div class="col-lg-6 col-lg-offset-1">
 
       <div class="panel panel-default">
         <!-- Default panel contents -->
@@ -88,5 +106,6 @@
   </div>
   </div>
 </div><!-- /.row -->
+
 </body>
 </html>
