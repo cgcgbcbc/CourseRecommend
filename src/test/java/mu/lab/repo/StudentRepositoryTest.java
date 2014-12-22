@@ -43,5 +43,8 @@ public class StudentRepositoryTest extends TestCase {
         assertEquals(1, studentRepository.count());
         Student student = studentRepository.getStudentByIndex(0);
         assertEquals(studentId, student.studentId);
+        studentRepository.save(new Student(studentId));
+        assertEquals(2, studentRepository.count());
+
     }
 }
