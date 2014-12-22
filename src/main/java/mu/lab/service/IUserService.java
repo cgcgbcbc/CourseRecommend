@@ -1,7 +1,9 @@
 package mu.lab.service;
 
+import mu.lab.model.Score;
 import mu.lab.model.Student;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -19,4 +21,8 @@ public interface IUserService {
     public Map<Integer, Integer> getDistanceDistribution(int max_step, Long userId);
 
     public Map<Integer, Integer> getDistanceDistribution(Long userId);
+
+    public Map<Integer, Integer> getDistanceDistribution(List<Score> scores);
+
+    public Map<Integer, Integer> getDistanceDistribution(List<Score> scores, int max_step);
 }

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -21,6 +22,9 @@ import java.util.Map;
 @Service
 @Transactional
 public class UserService implements IUserService {
+    @Autowired
+    private CourseService courseService;
+
     enum MyRelationshipTypes implements RelationshipType {
         SCORE, LEARN_BY
     }
@@ -74,5 +78,21 @@ public class UserService implements IUserService {
     @Override
     public Map<Integer, Integer> getDistanceDistribution(Long userId) {
         return this.getDistanceDistribution(MAX_STEP, userId);
+    }
+
+    @Override
+    public Map<Integer, Integer> getDistanceDistribution(List<Score> scores) {
+        return this.getDistanceDistribution(scores, MAX_STEP);
+    }
+
+    @Override
+    public Map<Integer, Integer> getDistanceDistribution(List<Score> scores, int max_step) {
+        Student student = this.createFakeStudent();
+        for (Score score : scores) {
+            courseService.addRelationshipBetweenStudentAndCourse(student.getId(), score.getCourse().courseId, score.getScore());
+        }
+        Map<Integer, Integer> result = this.getDistanceDistribution(max_step, student.getId());
+        studentRepository.delete(student);
+        return result;
     }
 }
