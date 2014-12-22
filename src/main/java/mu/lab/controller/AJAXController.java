@@ -48,7 +48,7 @@ public class AJAXController {
             Iterable<Course> courses = courseService.getCourses(page);
             String result = "";
             for (Course course : courses) {
-                result += course.courseName +" "+course.courseId+ "\n";
+                result += course.courseName +";"+course.courseId+ "\n";
             }
 
             return result;
@@ -58,9 +58,10 @@ public class AJAXController {
             Student student=userService.getRandomStudent(Math.abs(Username.hashCode()));
             String result="";
             for(Score s: student.scoreSet){
-                result+=s.getCourse().courseName+" "+s.getScore()+" "+s.getCourse().courseId +"\n";
+                result+=s.getCourse().courseName+";"+s.getScore()+";"+s.getCourse().courseId +"\n";
             }
             System.out.println(student.getId());
+            System.out.println(result);
             return result;
         }
         return "";
@@ -70,27 +71,22 @@ public class AJAXController {
     @ResponseBody
     @Transactional
     public Object ajaxRec(@RequestParam("courses")String courses){
-        String[] strs=courses.split("\n");
+        String[] strs=courses.split(":");
         String result="";
         List<Score> scores=new ArrayList<Score>();
-        for(int i=0; i < strs.length-1; i++){
-            String[] l=strs[i].split(" ");
+        for(int i=0; i < 1; i++){String[] l=strs[i].split(";");
             scores.add(scoreService.createFakeScore(l[0], Integer.valueOf(l[1])));
         }
         Iterable<Course> courses1=simpleCourseRecommendation.getRecommendCourseBasedOnMockScores(scores);
         Iterable<Course> courses2=courseRecommendation.getRecommendCourseBasedOnMockScores(scores);
         for(Course course:courses1){
-            result+=course.courseName+" ";
+            result+=course.courseName+";";
         }
-        result+="\n";
+        result+=":";
         for(Course course:courses2){
-            result+=course.courseName+" ";
+            result+=course.courseName+";";
         }
-
-        System.out.println(courses);
-        System.out.println(courses1);
-        System.out.println(courses2);
-        System.out.println(result+"asdf");
+        System.out.println(result);
         return result;
     }
 }

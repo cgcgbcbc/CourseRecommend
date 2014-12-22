@@ -30,16 +30,16 @@ function pre(){
             var it=$("table");
             var strs=msg.split("\n");
             for(var i=0; i<strs.length-1; i++){
-                var str=strs[i].split(" ");
+                var str=strs[i].split(";");
                 coursIdBuffer[str[0]]=str[1];
                 if(courseAndScoure[strs[i]] == null){
                     it.append("<tr><td style='text-align: center;'>"+str[0]+"</td> <td style='text-align: center;width: 60px;'>" +
-                    " <input type='button' value='添加' style='text-align:center;width: 60px;'  onclick='addAcourse(this)'" +
+                    " <input type='button' class='btn btn-default' value='添加' style='text-align:center;width: 60px;'  onclick='addAcourse(this)'" +
                     " readOnly='true'> </td>");
                 }
                 else{
                     it.append("<tr><td style='text-align: center;'>"+str[0]+"</td> <td style='text-align: center;width: 60px;'>" +
-                    " <input type='button' disabled value='添加' style='text-align:center;width: 60px;'  onclick='addAcourse(this)'" +
+                    " <input type='button' class='btn btn-default' disabled value='添加' style='text-align:center;width: 60px;'  onclick='addAcourse(this)'" +
                     " readOnly='true'> </td>");
                 }
             }
@@ -69,16 +69,16 @@ function next(){
             var it=$("table");
             var strs=msg.split("\n");
             for(var i=0; i<strs.length-1; i++){
-                var str=strs[i].split(" ");
+                var str=strs[i].split(";");
                 coursIdBuffer[str[0]]=str[1];
                 if(courseAndScoure[strs[i]] == null){
                     it.append("<tr><td style='text-align: center;'>"+str[0]+"</td> <td style='text-align: center;width: 60px;'>" +
-                    " <input type='button' value='添加' style='text-align:center;width: 60px;'  onclick='addAcourse(this)'" +
+                    " <input type='button' class='btn btn-default' value='添加' style='text-align:center;width: 60px;'  onclick='addAcourse(this)'" +
                     " readOnly='true'> </td>");
                 }
                 else{
                     it.append("<tr><td style='text-align: center;'>"+str[0]+"</td> <td style='text-align: center;width: 60px;'>" +
-                    " <input type='button' disabled value='添加' style='text-align:center;width: 60px;'  onclick='addAcourse(this)'" +
+                    " <input type='button' class='btn btn-default' disabled value='添加' style='text-align:center;width: 60px;'  onclick='addAcourse(this)'" +
                     " readOnly='true'> </td>");
                 }
             }
@@ -95,7 +95,7 @@ function load() {
         success: function (msg) {
             var strs=msg.split("\n");
             for(var i=0; i < strs.length-1;i++){
-                var s=strs[i].split(" ");
+                var s=strs[i].split(";");
                 courseAndScoure[s[0]]=s[1];
                 courseIdMap[s[0]]=s[2];
             }
@@ -151,16 +151,16 @@ function addCourse(){
             var it=$("table");
             var strs=msg.split("\n");
             for(var i=0; i<strs.length-1; i++){
-                var str=strs[i].split(" ");
+                var str=strs[i].split(";");
                 coursIdBuffer[str[0]]=str[1];
                 if(courseAndScoure[strs[i]] == null){
                     it.append("<tr><td style='text-align: center;'>"+str[0]+"</td> <td style='text-align: center;width: 60px;'>" +
-                    " <input type='button' value='添加' style='text-align:center;width: 60px;'  onclick='addAcourse(this)'" +
+                    " <input type='button' class='btn btn-default'  value='添加' style='text-align:center;width: 60px;'  onclick='addAcourse(this)'" +
                     " readOnly='true'> </td>");
                 }
                 else{
                     it.append("<tr><td style='text-align: center;'>"+str[0]+"</td> <td style='text-align: center;width: 60px;'>" +
-                    " <input type='button' disabled value='添加' style='text-align:center;width: 60px;'  onclick='addAcourse(this)'" +
+                    " <input type='button' class='btn btn-default' disabled value='添加' style='text-align:center;width: 60px;'  onclick='addAcourse(this)'" +
                     " readOnly='true'> </td>");
                 }
             }
@@ -242,9 +242,11 @@ function recCourse(){
     while(rows.length > 1){
         rows[1].parentNode.removeChild(rows[1]);
     }
+    if(rows[0].cells.length > 2)
+        rows[0].cells[2].parentNode.removeChild(rows[0].cells[2]);
     var courses="";
     for(var k in courseIdMap){
-        courses+=courseIdMap[k]+" "+courseAndScoure[k]+"\n";
+        courses+=courseIdMap[k]+";"+courseAndScoure[k]+":";
     }
     $.ajax({
         type: "POST",
@@ -257,13 +259,16 @@ function recCourse(){
             t.rows[0].cells[1].style.width="";
             t.rows[0].cells[0].innerHTML="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;简单推荐&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
             var it=$("table");
-            var strs=msg.split("\n");
-            var str1=strs[0].split(" ");
-            var str2=strs[1].split(" ");
-            for(var i=0; i<str1.length-1; i++){
-                it.append("<tr><td style='text-align: center;'>"+str1[i]+"</td> <td style='text-align: center;'>" +
-                " </td><td style='text-align: center;'>"+str2[i]+"</td> <td style='text-align: center;'>" +
-                " </td></tr>");
+            var strs=msg.split(":");
+            var str1=strs[0].split(";");
+            var str2=strs[1].split(";");
+            if(str1.length < str2.length)
+                for(var i=str1.length; i < str2.length;i++)
+                    str1[i]="";
+            for(var i=0; i<str1.length-1 || i < str2.length-1; i++){
+
+                it.append("<tr><td style='text-align: center;'>"+str1[i]+"</td>"  +
+                "<td style='text-align: center;'>"+str2[i]+"</td></tr>");
             }
 
         }

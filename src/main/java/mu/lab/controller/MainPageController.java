@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.ArrayList;
 @Controller
-@RequestMapping("/Login")
+
 public class MainPageController {
 
     @Autowired
@@ -26,7 +26,7 @@ public class MainPageController {
     @Autowired
     StudentRepository studentRepository;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value="/Login",method = RequestMethod.GET)
     public String printWelcome(@RequestParam("Username")String username ,ModelMap model) {
         model.addAttribute("Username",username);
         return "MainPage";

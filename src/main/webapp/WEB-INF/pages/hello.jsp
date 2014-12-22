@@ -37,7 +37,7 @@
 		<form role="form" action="/Login">
 			<div class="form-group">
 				<label for="exampleInputEmail1">User Name</label>
-				<input type="email" class="form-control" id="exampleInputEmail1" name="Username" placeholder="User Name">
+				<input class="form-control" id="exampleInputEmail1" name="Username" placeholder="User Name">
 			</div>
 			<p>&nbsp </p>
 			<p>&nbsp </p>
