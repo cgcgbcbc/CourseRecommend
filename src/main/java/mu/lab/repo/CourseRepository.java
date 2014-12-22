@@ -32,7 +32,7 @@ public interface CourseRepository extends GraphRepository<Course> {
                 "limit {1}\n" +
                 "match a, (b)-[s:SCORE]->(c:Course)\n" +
                 "where not( (a)-[:SCORE]->(c) )\n" +
-                "with s.score as score, c\n" +
+                "with sum(s.score)/count(*) as score, c\n" +
                 "order by score desc\n" +
                 "limit {1}\n" +
                 "return c;")
