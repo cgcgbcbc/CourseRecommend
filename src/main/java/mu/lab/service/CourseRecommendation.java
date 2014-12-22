@@ -7,6 +7,7 @@ import mu.lab.repo.CourseRepository;
 import mu.lab.repo.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ import java.util.List;
  * Created by guangchen on 12/18/14 22:04.
  */
 @Service
+@Transactional
 public class CourseRecommendation implements ICourseRecommendation {
     @Autowired
     CourseRepository courseRepository;
