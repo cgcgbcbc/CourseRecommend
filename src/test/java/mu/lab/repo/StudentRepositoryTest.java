@@ -41,7 +41,7 @@ public class StudentRepositoryTest extends TestCase {
         String studentId = "abcde";
         studentRepository.save(new Student(studentId));
         assertEquals(1, studentRepository.count());
-        Student student = studentRepository.findAll().single();
+        Student student = studentRepository.getStudentByIndex(0);
         assertEquals(studentId, student.studentId);
     }
 }

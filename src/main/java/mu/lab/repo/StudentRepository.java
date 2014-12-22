@@ -22,4 +22,7 @@ public interface StudentRepository extends GraphRepository<Student> {
             "with a, b, sum(result) as sim\n" +
             "merge (a)-[s:Similarity]-(b) set s.similarity=sim;")
     void addSimilarityRelation(Long studentId);
+
+    @Query("match (s:Student) return s skip {0} limit 1;")
+    Student getStudentByIndex(long index);
 }

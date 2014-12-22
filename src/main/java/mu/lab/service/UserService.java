@@ -23,7 +23,7 @@ public class UserService implements IUserService {
     public Student getRandomStudent(int seed) {
         long count = studentRepository.count();
         if (count == 0) return null;
-        Student student = studentRepository.findAll().slice(0,1).getContent().get(0);
+        Student student = studentRepository.getStudentByIndex(seed % count);
         template.fetch(student.scoreSet);
         for (Score score : student.scoreSet) {
             template.fetch(score.getCourse());
