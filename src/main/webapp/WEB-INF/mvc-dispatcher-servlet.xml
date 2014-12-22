@@ -22,7 +22,7 @@
         <property name="prefix" value="/WEB-INF/pages/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
-
+    <mvc:resources mapping="/js/**" location="/js/"/>
     <neo4j:config storeDirectory="data/graph.db" base-package="mu.lab.model"/>
     <neo4j:repositories base-package="mu.lab.repo" />
 
