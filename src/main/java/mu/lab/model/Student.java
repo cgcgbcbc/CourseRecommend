@@ -5,6 +5,7 @@ import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 import org.springframework.data.neo4j.annotation.RelatedToVia;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -34,6 +35,14 @@ public class Student {
 
     public Student(String studentId) {
         this.studentId = studentId;
+    }
+
+    public Set<Course> getCourses() {
+        Set<Course> courses = new HashSet<Course>();
+        for (Score score : this.scoreSet) {
+            courses.add(score.getCourse());
+        }
+        return courses;
     }
 
 }
