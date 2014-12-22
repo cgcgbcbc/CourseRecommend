@@ -23,7 +23,7 @@ public class SimpleCourseRecommendation implements ICourseRecommendation {
      */
     public static final int DEFAULT_RECOMMEND_COURSE_COUNT = 5;
 
-    public static final int DEFAULT_COURSE_STUDENT_BOUND = 10;
+    public static final int DEFAULT_COURSE_STUDENT_BOUND = 5;
 
     @Autowired
     CourseRepository courseRepository;
